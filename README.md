@@ -3,6 +3,8 @@ Assessment from LogiScope Technology pvt.ltd (User Managment API)
 
 This is a Spring Boot application that provides RESTful APIs to manage user data for an e-commerce website. The application includes basic CRUD operations for users and additional features like password expiry management, bulk user creation, and more.
 
+###### All code is in Master Branch ######
+
 ## Features
 
 - **CRUD Operations**: Create, Retrieve, Update, and Delete users.
