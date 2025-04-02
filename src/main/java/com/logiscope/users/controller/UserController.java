@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.logiscope.users.model.EmailRequest;
+import com.logiscope.users.model.ResponseObject;
 import com.logiscope.users.model.User;
 import com.logiscope.users.service.UserService;
 
@@ -20,16 +21,16 @@ public class UserController {
     private UserService userService;
 
     @PostMapping //new user
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.status(201).body(createdUser);
+    public ResponseEntity<ResponseEntity<ResponseObject<User>>> createUser(@RequestBody User user) {
+        ResponseEntity<ResponseObject<User>> createdUser = userService.createUser(user);
+        return ResponseEntity.ok().body(createdUser);
     }
     
     
     @PostMapping("/bulk") //bulk user
-    public ResponseEntity<List<User>> createUsers(@RequestBody List<User> users) {
-        List<User> createdUsers = userService.createUsers(users);
-        return ResponseEntity.status(201).body(createdUsers);
+    public ResponseEntity<ResponseEntity<ResponseObject<List<User>>>> createUsers(@RequestBody List<User> users) {
+        ResponseEntity<ResponseObject<List<User>>> createdUsers = userService.createUsers(users);
+        return ResponseEntity.ok(createdUsers);
     }
 
 //    @GetMapping("/{email}")
@@ -41,7 +42,7 @@ public class UserController {
     
     @PostMapping("/getByEmail") //get single data
     public ResponseEntity<User> getUserByEmail(@RequestBody EmailRequest emailRequest) {
-        Optional<User> user = userService.getUserByEmail(emailRequest.getEmail());
+       Optional<User> user = userService.getUserByEmail(emailRequest.getEmail());
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
     
@@ -59,11 +60,11 @@ public class UserController {
     
     
 
-    @PutMapping	//to update data
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        User updatedUser = userService.updateUser(user);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    @PutMapping // to update data
+    public ResponseEntity<ResponseObject<User>> updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
     }
+
 
     @DeleteMapping	//to delete data
     public ResponseEntity<String> deleteUser(@RequestBody EmailRequest emailRequest) {
