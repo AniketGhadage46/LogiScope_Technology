@@ -26,14 +26,20 @@ This is a Spring Boot application that provides RESTful APIs to manage user data
   }
 
   Response:
-
 {
-  "id": 1,
-  "firstName": "Abhijit",
-  "lastName": "Debadwar",
-  "email": "abhijit@gmail.com",
-  "password": "password123"
-  "passwordExpiryDate": "2025-05-01T00:00:00.000+00:00"
+    "body": {
+        "message": "User created successfully!",
+        "data":{
+          "id": 1,
+          "firstName": "Abhijit",
+          "lastName": "Debadwar",
+          "email": "abhijit@gmail.com",
+          "password": "password123"
+          "passwordExpiryDate": "2025-05-01T00:00:00.000+00:00"
+        }
+    },
+    "statusCodeValue": 200,
+    "statusCode": "OK"
 }
 
 ### 2. POST /users/get – Retrieve a User by Email
