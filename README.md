@@ -71,11 +71,14 @@ Request Body:
 
 Response:
 {
-  "id": 1,
-  "firstName": "Abhijit",
-  "lastName": "Debadwar",
-  "email": "abhijit@gmail.com",
-  "passwordExpiryDate": "2025-05-01T00:00:00.000+00:00"
+    "message": "User updated successfully!",
+    "data": {
+      "id": 1,
+      "firstName": "Abhijit",
+      "lastName": "Debadwar",
+      "email": "abhijit@gmail.com",
+      "passwordExpiryDate": "2025-05-01T00:00:00.000+00:00"
+    }
 }
 
 ###4.  DELETE /users – Delete a User by Email
@@ -105,7 +108,11 @@ Endpoint: POST /users/bulk
 Description: This API allows the creation of multiple users in a single request.
 Input: An array of user objects.
 Example Request:
-[
+
+{
+    "body": {
+        "message": "Bulk Users created successfully!",
+        "data": [
   {
   "firstName": "Abhishek",
   "lastName": "jadhav",
@@ -117,10 +124,7 @@ Example Request:
   "lastName": "pawar",
   "email": "vaibhav@gmail.com",
   "password": "password12345"
-  }
-]
-Response: Returns an array of created users.
-[
+  },
   {
     "id": 2,
     "firstName": "Abhishek",
@@ -136,6 +140,14 @@ Response: Returns an array of created users.
     "passwordExpiryDate": "2025-05-01T00:00:00.000+00:00"
   }
 ]
+    },
+    "statusCodeValue": 200,
+    "statusCode": "OK"
+}
+
+
+
+
 
 ## Technologies Used
 
